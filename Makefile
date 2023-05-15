@@ -6,7 +6,7 @@
 #    By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 21:08:42 by kquetat-          #+#    #+#              #
-#    Updated: 2023/05/14 22:30:13 by kquetat-         ###   ########.fr        #
+#    Updated: 2023/05/15 13:28:06 by kquetat-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,19 +47,19 @@ BAR			=	$(shell expr 27 \* $(COUNTER) / $(TOTAL_SRCS))
 ### Compilation & flags ###
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
-OFLAGS	=	-L$(LIBMLX) -lmlx -framework OpenGL -framework AppKit
+OFLAGS	=	-lmlx -framework OpenGL -framework AppKit
 
 RM	=	rm -f
 
 %.o: %.c ${HEADER}
 	@$(eval COUNTER = $(shell expr $(COUNTER) + 1))
 	@$(CC) $(CFLAGS) -I${HEADER} -c $< -o $@
-	@echo " $(PALEBLUE)$(BOLD)$(ITALIC) Loading [$(LGREEN)FDF$(PALEBLUE)]: $(RESET)"
+	@echo " $(PALEBLUE)$(BOLD)$(ITALIC) Loading [$(LGREEN)SO_LONG$(PALEBLUE)]: $(RESET)"
 	@printf "\t\t\t$(BOLD)$(PALEBLUE)[$(BEIGE)%-27.$(BAR)s$(PALEBLUE)] %d/%d [%d%%]$(RESET)" "===========================" $(COUNTER) $(TOTAL_SRCS) $(PERCENT)
 	@echo "$(CUR_UP)$(CUR_UP)"
 
 ### Source Files ###
-SRCS	=	${addprefix ${SRCS_PATH}, so_long.c error/erroc.c} \
+SRCS	=	${addprefix ${SRCS_PATH}, so_long.c error/error.c error/map_error.c error/tools_error.c} \
 			${addprefix ${SRCS_PATH}map_utils/, ft_parsing.c} \
 			${addprefix ${FT_PRINTF_PATH}, ft_printf.c srcs/add_numflags.c srcs/hexa_padd.c \
 			srcs/print_char.c srcs/print_str.c srcs/ft_get_precision.c srcs/int_precision.c \
@@ -77,7 +77,7 @@ $(NAME):	$(OBJS)
 	@printf "\n\n\n"
 	@make -C $(LIBFT)
 	@$(CC) $(CFLAGS) $(OFLAGS) $(LIBFT)libft.a $(OBJS) -o $(NAME)
-	@printf "\n\n\t $(BOLD)$(ITALIC)$(EGGSHELL)SO_LONG COMPILED $(RESET)\n\n"
+	@printf "\n\n\t $(BOLD)$(ITALIC)$(EGGSHELL)SO_LONG COMPILED ✨$(RESET)\n\n"
 
 debug:
 	$(MAKE) DEBUG=1
