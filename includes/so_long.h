@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:17:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/15 16:04:48 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:41:33 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct	s_mlx
 /** Map Parsing **/
 int	get_map_height(char *filename, t_map *map);
 int	base_len(char *filename);
-int	collect_map(t_map **map, char *filename, int height, int width);
+int	collect_map(t_map *map, char *filename, int height, int width);
 
 /** Error functions **/
 int		ft_error(int error);

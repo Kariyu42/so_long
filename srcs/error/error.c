@@ -6,11 +6,13 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:46:46 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/14 22:38:22 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:57:17 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+
 
 int	check_extension(char *str)
 {

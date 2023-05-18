@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:04:31 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/15 15:40:57 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:37:03 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ int	check_walls(char *filename, t_map *map)
 	int		fd;
 	char	*line;
 
-	i = 0;
+	i = -1;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		exit(EXIT_FAILURE);
-	while (i < map->height)
+	while (++i < map->height)
 	{
 		line = get_next_line(fd);
 		if (i == 0 || i == map->height - 1)
@@ -59,7 +59,8 @@ int	check_walls(char *filename, t_map *map)
 			if (check_extremities(line) == ERROR)
 				return (ERROR);
 	}
-	close(fd);
+	if (close(fd) == -1)
+		return (ft_putchar_fd("Fail to close fd in check_walls", 2), ERROR);
 	return (SUCCESS);
 }
 

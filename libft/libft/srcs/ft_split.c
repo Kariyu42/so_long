@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 16:35:43 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/04/10 20:56:53 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/18 09:34:46 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	**ft_split(char const *s, char c)
 	int i;
 	char	str[] = "     split   this for   me !  ";
 	char c = ' ';
-	
+
 	char **s1 = ft_split(str, c);
 	while (s1[i])
 	{
