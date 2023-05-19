@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:16:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/18 15:41:29 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:15:31 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@
 
 /* gestion des erreurs :
 1. Regarder si l'extension de la carte est bien .ber (ft_strncmp) ✅
-2. Regarder si la carte est bien RECTANGULAIRE (même nombre de caractères par ligne)
+2. Regarder si la carte est bien RECTANGULAIRE (même nombre de caractères par ligne) ✅
 3. Regarder si la carte est bien fermée par des murs (des 1) ✅
-4. Regarder si la carte contient bien au moins un joueur, une sortie et des collectibles
-5. Regarder si la carte contient bien que des caractères autorisés (1, 0, P, C, E)/
+4. Regarder si la carte contient bien au moins un joueur, une sortie et des collectibles ✅
+5. Regarder si la carte contient bien que des caractères autorisés (1, 0, P, C, E)/ ✅
 les 1 (murs)
 les 0 (sol)
 les P (joueur)
 les C (collectibles)
 les E (sortie)
-6. regarder si un joueur est bien présent sur la carte (1 SEUL joueur **sinon erreur**)
-7. regarder si une sortie est bien présente sur la carte (1 SEULE sortie **sinon erreur**)
-8. regarder si des collectibles sont bien présents sur la carte (au moins 1 **sinon erreur**)
+6. regarder si un joueur est bien présent sur la carte (1 SEUL joueur **sinon erreur**) ✅
+7. regarder si une sortie est bien présente sur la carte (1 SEULE sortie **sinon erreur**) ✅
+8. regarder si des collectibles sont bien présents sur la carte (au moins 1 **sinon erreur**) ✅
 9. regarder si le joueur est entourer de mur ppour afficher une erreur
 10. regarder si la sortie est entourer de mur pour afficher une erreur
 11. regarder si les collectibles sont entourer de mur pour afficher une erreur
@@ -42,11 +42,14 @@ static void	init_params(t_map *map)
 {
 	map->width = 0;
 	map->height = 0;
+	map->tools.door = 0;
+	map->tools.player = 0;
+	map->tools.collects = 0;
 }
 
 static void	check_errors(char *filename, t_map *map)
 {
-	map->height = get_map_height(filename, map); // get map height
+	map->height = get_map_height(filename); // get map height
 //	printf("map->height : %d\n", map->height);
 	map->width = base_len(filename); // width of the map
 //	printf("map->width : %d\n", map->width);
@@ -55,7 +58,8 @@ static void	check_errors(char *filename, t_map *map)
 		exit(EXIT_FAILURE);
 	if (collect_map(map, filename, map->height, map->width) == ERROR)
 		exit(EXIT_FAILURE);
-	
+	if (check_adds_map(map, map->width) == ERROR)
+		exit(EXIT_FAILURE);
 }
 
 int	main(int argc, char **argv)
