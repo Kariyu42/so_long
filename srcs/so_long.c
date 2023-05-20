@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:16:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/19 16:15:31 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/20 16:39:07 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,8 @@ static void	init_params(t_map *map)
 
 static void	check_errors(char *filename, t_map *map)
 {
-	map->height = get_map_height(filename); // get map height
-//	printf("map->height : %d\n", map->height);
-	map->width = base_len(filename); // width of the map
-//	printf("map->width : %d\n", map->width);
-//	puts("check_walls");
-	if (check_walls(filename, map) == ERROR)
-		exit(EXIT_FAILURE);
+	map->width = base_len(filename);
+	map->height = get_map_height(filename);
 	if (collect_map(map, filename, map->height, map->width) == ERROR)
 		exit(EXIT_FAILURE);
 	if (check_adds_map(map, map->width) == ERROR)
@@ -73,6 +68,7 @@ int	main(int argc, char **argv)
 	if (check_extension(argv[1]) == ERROR)
 		return (ERROR);
 	init_params(&map);
+	puts("bbb");
 	check_errors(argv[1], &map);
 	//if (ft_parsing(argv[1], &map) == ERROR)
 	//	return (ERROR);

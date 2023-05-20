@@ -1,31 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_error.c                                        :+:      :+:    :+:   */
+/*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/15 11:04:31 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/20 15:04:25 by kquetat-         ###   ########.fr       */
+/*   Created: 2023/05/20 14:39:43 by kquetat-          #+#    #+#             */
+/*   Updated: 2023/05/20 15:52:21 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	base_len(char *filename)
+int	check_walls(char *line, int index, t_map *map, int width)
 {
-	int		len;
-	int		fd;
-	char	*line;
- 
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		exit(EXIT_FAILURE);
-	line = get_next_line(fd);
-	if (line[0] == '\n')
-		exit(EXIT_FAILURE);
-	len = (int)ft_strlen(line) - 2;
-	if (close(fd) == -1)
-		exit(EXIT_FAILURE);
-	return (len);
+	int	i;
+
+	i = 0;
+	if (index == 0 || index == map->height)
+	{
+		while (line[i])
+		{
+			if (line[i] != '1')
+				return (ERROR);
+			i++;
+		}
+	}
+	else
+	{
+		if (line[0] != '1' || line[width] != '1')
+			return (ERROR);
+	}
+	return (SUCCESS);
+}
+
+char	*trim_newline(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && line[i] != '\n')
+		i++;
+	line[i] = '\0';
+	return (line);
 }

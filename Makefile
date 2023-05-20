@@ -6,7 +6,7 @@
 #    By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 21:08:42 by kquetat-          #+#    #+#              #
-#    Updated: 2023/05/15 13:28:06 by kquetat-         ###   ########.fr        #
+#    Updated: 2023/05/20 14:47:51 by kquetat-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ RM	=	rm -f
 
 ### Source Files ###
 SRCS	=	${addprefix ${SRCS_PATH}, so_long.c error/error.c error/map_error.c error/tools_error.c} \
-			${addprefix ${SRCS_PATH}map_utils/, ft_parsing.c} \
+			${addprefix ${SRCS_PATH}map_utils/, ft_parsing.c parsing2.c} \
 			${addprefix ${FT_PRINTF_PATH}, ft_printf.c srcs/add_numflags.c srcs/hexa_padd.c \
 			srcs/print_char.c srcs/print_str.c srcs/ft_get_precision.c srcs/int_precision.c \
 			srcs/print_hexa.c srcs/print_unsigned.c srcs/ft_get_width.c srcs/print_addr.c \
