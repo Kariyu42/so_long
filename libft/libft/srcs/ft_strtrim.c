@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:39:53 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/04/10 20:56:53 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:49:56 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
-	size_t	j;
+	char	*dest;
+	size_t	dstsize;
+	size_t	len;
 
-	i = 0;
-	if (!s1)
-		return (NULL);
-	while (s1[i] && ft_strchr(set, s1[i]))
-		i++;
-	if (s1[i] == '\0')
-		return (ft_calloc(1, 1));
-	j = ft_strlen(s1 + i);
-	while (ft_strchr(set, s1[j + i]))
-		j--;
-	return (ft_substr(s1, i, (j + 1)));
+	if (!s1 || !set)
+		return (0);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	if (*s1 == 0)
+		return (ft_strdup(""));
+	len = ft_strlen(s1);
+	while (s1[len - 1] && ft_strrchr(set, s1[len - 1]))
+		len--;
+	dstsize = len;
+	dest = ft_substr(s1, 0, dstsize);
+	return (dest);
 }
 
 /*int main(void)

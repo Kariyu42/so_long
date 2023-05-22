@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:17:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/20 15:50:05 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/22 12:08:06 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,13 @@ typedef struct	s_mlx
 int		get_map_height(char *filename);
 int		check_adds_map(t_map *map, int width);
 int		base_len(char *filename);
-int		collect_map(t_map *map, char *filename, int height, int width);
+int		collect_map(t_map *map, char *filename);
 char	*trim_newline(char *line);
 int		check_walls(char *line, int index, t_map *map, int width);
 
 /** Error functions **/
 int		ft_error(int error);
 int		check_extension(char *str);
+void	print_map(t_map *map);
 
 #endif
