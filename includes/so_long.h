@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:17:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/22 12:08:06 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:17:44 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,22 @@ typedef struct	s_mlx
 # include <string.h>
 # include "../libft/inc/libft.h"
 
-/** Map Parsing **/
-int		get_map_height(char *filename);
-int		check_adds_map(t_map *map, int width);
-int		base_len(char *filename);
-int		collect_map(t_map *map, char *filename);
+/** Initialize parameters **/
+void	init_params(t_map *map);
+
+// Map Parsing
 char	*trim_newline(char *line);
+int		get_map_height(char *filename);
+int		search_char(char *line, t_map *map);
+void	collect_map(char *filename, t_map *map);
 int		check_walls(char *line, int index, t_map *map, int width);
 
-/** Error functions **/
+
+/** Print & error functions **/
 int		ft_error(int error);
 int		check_extension(char *str);
+
+/* remove this function before push */
 void	print_map(t_map *map);
 
 #endif

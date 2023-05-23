@@ -6,7 +6,7 @@
 #    By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 21:08:42 by kquetat-          #+#    #+#              #
-#    Updated: 2023/05/22 14:11:33 by kquetat-         ###   ########.fr        #
+#    Updated: 2023/05/23 13:19:59 by kquetat-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,8 +59,8 @@ RM	=	rm -f
 	@echo "$(CUR_UP)$(CUR_UP)"
 
 ### Source Files ###
-SRCS	=	${addprefix ${SRCS_PATH}, so_long.c error/error.c error/map_error.c error/tools_error.c} \
-			${addprefix ${SRCS_PATH}map_utils/, ft_parsing.c parsing2.c} \
+SRCS	=	${addprefix ${SRCS_PATH}, so_long.c error/error.c} \
+			${addprefix ${SRCS_PATH}map_utils/, collect_map.c map_tools.c} \
 			${addprefix ${FT_PRINTF_PATH}, ft_printf.c srcs/add_numflags.c srcs/hexa_padd.c \
 			srcs/print_char.c srcs/print_str.c srcs/ft_get_precision.c srcs/int_precision.c \
 			srcs/print_hexa.c srcs/print_unsigned.c srcs/ft_get_width.c srcs/print_addr.c \

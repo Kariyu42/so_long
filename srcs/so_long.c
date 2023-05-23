@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:16:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/22 16:22:08 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/23 12:09:20 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	print_map(t_map *map)
 	}
 }
 
-static void	init_params(t_map *map)
+void	init_params(t_map *map)
 {
 	map->width = 0;
 	map->height = 0;
@@ -55,29 +55,17 @@ static void	init_params(t_map *map)
 	map->tools.collects = 0;
 }
 
-static void	check_errors(char *filename, t_map *map)
-{
-	if (collect_map(map, filename) == ERROR)
-		exit(EXIT_FAILURE);
-	// print_map(map);
-	map->width = (int)ft_strlen(map->map[0]) - 1;
-	printf("map->width : %d\n", map->width);
-	if (check_adds_map(map, map->width) == ERROR)
-		exit(EXIT_FAILURE);
-}
-
 int	main(int argc, char **argv)
 {
-	//t_mlx	mlx;
 	t_map	map;
+	//t_mlx	mlx;
 	//t_data	img;
 
 	if (argc != 2)
-		return (ft_error(ERROR));
+		return (ft_error(2));
 	if (check_extension(argv[1]) == ERROR)
-		return (ERROR);
-	init_params(&map);
-	check_errors(argv[1], &map);
+		return (ft_error(3));
+	collect_map(argv[1], &map);
 	//if (ft_parsing(argv[1], &map) == ERROR)
 	//	return (ERROR);
 	return (0);
