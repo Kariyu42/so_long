@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 22:26:28 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/23 16:45:52 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:49:50 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,23 @@ t_start	find_start(char player, char **map)
 	exit(EXIT_FAILURE);
 }
 
-static void	check_paths(t_map *map, t_start pos)
+static void	check_paths(char **plan, t_start pos, t_map *map)
 {
 	static int	c = 0;
 	static int	e = 0;
 
 	if (pos.x <= 0 || pos.y <= 0 \
-		|| map->map[pos.y][pos.x] == '1' || map->map[pos.y][pos.x] == 'X')
+		|| plan[pos.y][pos.x] == '1' || plan[pos.y][pos.x] == 'X')
 		return ;
-	if (map->map[pos.y][pos.x] == 'C')
+	if (plan[pos.y][pos.x] == 'C')
 		c += 1;
-	else if (map->map[pos.y][pos.x] == 'E')
+	else if (plan[pos.y][pos.x] == 'E')
 		e += 1;
-	map->map[pos.y][pos.x] = 'X';
-	check_paths(map, (t_start){pos.x + 1, pos.y});
-	check_paths(map, (t_start){pos.x - 1, pos.y});
-	check_paths(map, (t_start){pos.x, pos.y + 1});
-	check_paths(map, (t_start){pos.x, pos.y - 1});
+	plan[pos.y][pos.x] = 'X';
+	check_paths(plan, (t_start){pos.x + 1, pos.y}, map);
+	check_paths(plan, (t_start){pos.x - 1, pos.y}, map);
+	check_paths(plan, (t_start){pos.x, pos.y + 1}, map);
+	check_paths(plan, (t_start){pos.x, pos.y - 1}, map);
 	if (c != map->tools.collects || c == 0)
 		ft_error(6);
 	if (e != map->tools.door || e == 0)
@@ -77,7 +77,7 @@ static int	parsing_check(t_map *map, int width)
 	if (map->tools.door == 1 && map->tools.collects > 0 \
 		&& map->tools.player == 1)
 		{
-			check_paths(map, find_start('P', map->map));
+			check_paths(map_dup(map->map, map), find_start('P', map->map), map);
 			print_map(map); // remove function before push !
 			return (SUCCESS);
 		}

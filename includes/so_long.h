@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:17:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/23 13:17:44 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:44:31 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,13 @@ void	init_params(t_map *map);
 // Map Parsing
 char	*trim_newline(char *line);
 int		get_map_height(char *filename);
+char	**map_dup(char **plan, t_map *map);
 int		search_char(char *line, t_map *map);
 void	collect_map(char *filename, t_map *map);
 int		check_walls(char *line, int index, t_map *map, int width);
 
+// Free map function
+void	free_map(char **plan);
 
 /** Print & error functions **/
 int		ft_error(int error);

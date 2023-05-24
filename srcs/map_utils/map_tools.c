@@ -6,22 +6,23 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:35:34 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/23 17:05:42 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:40:44 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// function that creates a copy of the structure map
-t_map	*map_dup(t_map *map)
+// function that creates a copy of the map
+char	**map_dup(char **plan, t_map *map)
 {
-	t_map	*copy;
+	int		i;
+	char	**copy;
 
-	copy = malloc(sizeof(t_map));
-	copy->map = map->map;
-	copy->tools = map->tools;
-	copy->width = map->width;
-	copy->height = map->height;
+	i = -1;
+	copy = ft_calloc(sizeof(char *), map->height + 1);
+	while (plan[++i])
+		copy[i] = ft_strdup(plan[i]);
+	return (copy);
 }
 
 int	search_char(char *line, t_map *map)
