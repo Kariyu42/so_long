@@ -6,7 +6,7 @@
 #    By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 21:08:42 by kquetat-          #+#    #+#              #
-#    Updated: 2023/05/24 10:42:40 by kquetat-         ###   ########.fr        #
+#    Updated: 2023/05/24 14:40:54 by kquetat-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,8 @@ RM	=	rm -f
 	@echo "$(CUR_UP)$(CUR_UP)"
 
 ### Source Files ###
-SRCS	=	${addprefix ${SRCS_PATH}, so_long.c error/error.c} \
+SRCS	=	${addprefix ${SRCS_PATH}, so_long.c error/error.c init_game/initialize_game.c \
+			init_game/window_tools.c} \
 			${addprefix ${SRCS_PATH}map_utils/, collect_map.c map_tools.c map_tools2.c} \
 			${addprefix ${FT_PRINTF_PATH}, ft_printf.c srcs/add_numflags.c srcs/hexa_padd.c \
 			srcs/print_char.c srcs/print_str.c srcs/ft_get_precision.c srcs/int_precision.c \

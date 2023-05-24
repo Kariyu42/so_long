@@ -6,15 +6,20 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:17:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/24 10:44:31 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:34:52 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+// General
 # define ERROR 1
 # define SUCCESS 0
+
+// hook press key
+# define RED_CROSS 17
+# define ESC 53
 
 /* mlx window size */
 # define WIDTH 1920
@@ -94,6 +99,13 @@ int		check_walls(char *line, int index, t_map *map, int width);
 
 // Free map function
 void	free_map(char **plan);
+
+// Initialize game with MinilibX
+void	initialize_game(t_map *map, t_mlx *mlx, t_data *img);
+
+// Tools for closing window
+int		close_win(t_mlx *mlx);
+int		key_exit(int keycode, t_mlx *mlx);
 
 /** Print & error functions **/
 int		ft_error(int error);
