@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:17:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/26 15:59:24 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:23:50 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ void	initialize_game(t_map *map, t_mlx *mlx);
 // Tools for closing window
 int		close_win(t_mlx *mlx);
 int		key_exit(int keycode, t_mlx *mlx);
+
+// Other tools
+t_start find_start(char player, char **map);
 
 /** Print & error functions **/
 int		ft_error(int error);
