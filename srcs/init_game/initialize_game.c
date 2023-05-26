@@ -6,13 +6,13 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 12:01:03 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/25 13:13:15 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:55:07 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	init_mlx_win(t_mlx *mlx, t_data *img, t_map *map)
+static void	init_mlx_win(t_mlx *mlx, t_map *map)
 {
 	mlx->mlx = mlx_init();
 	if (mlx->mlx == NULL)
@@ -21,24 +21,58 @@ static void	init_mlx_win(t_mlx *mlx, t_data *img, t_map *map)
 		"kquetat- SO_LONG");
 	if (mlx->win == NULL)
 		exit(EXIT_FAILURE);
-	img->img = mlx_new_image(mlx->mlx, map->width * 64, map->height * 64);
-	if (img->img == NULL)
-		exit(EXIT_FAILURE);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
-		&img->line_length, &img->endian);
-	if (img->addr == NULL)
+	mlx->img = mlx_new_image(mlx->mlx, map->width * 64, map->width * 64);
+	if (mlx->img == NULL)
 		exit(EXIT_FAILURE);
 }
 
-/*static void	put_images(t_map *map, t_mlx *mlx, t_data *img)
+static void	stash_filenames(t_map *map, t_mlx *mlx)
 {
-	
-}*/
+	map->v.width = 64;
+	map->v.height = 64;
+	map->v.wall = mlx_xpm_file_to_image(mlx->mlx, "./img/wall_tree.xpm", \
+		&map->v.width, &map->v.height);
+	map->v.exit = mlx_xpm_file_to_image(mlx->mlx, "./img/exit_front.xpm", \
+		&map->v.width, &map->v.height);
+	map->v.coin = mlx_xpm_file_to_image(mlx->mlx, "./img/collectible.xpm", \
+		&map->v.width, &map->v.height);
+	map->v.ground = mlx_xpm_file_to_image(mlx->mlx, "./img/basic_grass.xpm", \
+		&map->v.width, &map->v.height);
+	map->v.player = mlx_xpm_file_to_image(mlx->mlx, "./img/player_front.xpm", \
+		&map->v.width, &map->v.height);
+}
 
-void	initialize_game(t_map *map, t_mlx *mlx, t_data *img)
+static void	put_images(t_map *map, t_mlx *mlx)
 {
-	init_mlx_win(mlx, img, map);
-	put_images();
+	int	i;
+	int	j;
+
+	i = -1;
+	j = -1;
+	while (map->map[++i])
+	{
+		j = -1;
+		while (map->map[i][++j])
+		{
+			mlx_put_image_to_window(mlx->mlx, mlx->win, map->v.ground, j * 64, i * 64);
+			if (map->map[i][j] == 'P')
+				mlx_put_image_to_window(mlx->mlx, mlx->win, map->v.player, j * 64, i * 64);
+			else if (map->map[i][j] == '1')
+				mlx_put_image_to_window(mlx->mlx, mlx->win, map->v.wall, j * 64, i * 64);
+			else if (map->map[i][j] == 'C')
+				mlx_put_image_to_window(mlx->mlx, mlx->win, map->v.coin, j * 64, i * 64);
+			else if (map->map[i][j] == 'E')
+				mlx_put_image_to_window(mlx->mlx, mlx->win, map->v.exit, j * 64, i * 64);
+		}
+	}
+}
+
+
+void	initialize_game(t_map *map, t_mlx *mlx)
+{
+	init_mlx_win(mlx, map);
+	stash_filenames(map, mlx);
+	put_images(map, mlx);
 	mlx_hook(mlx->win, RED_CROSS, 1L << 17, &close_win, mlx);
 	mlx_key_hook(mlx->win, &key_exit, mlx);
 	mlx_loop(mlx->mlx);

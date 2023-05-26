@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:16:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/24 12:21:20 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:42:40 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,12 @@ int	main(int argc, char **argv)
 {
 	t_map	map;
 	t_mlx	mlx;
-	t_data	img;
 
 	if (argc != 2)
 		return (ft_error(2));
 	if (check_extension(argv[1]) == ERROR)
 		return (ft_error(3));
 	collect_map(argv[1], &map);
-	initialize_game(&map, &mlx, &img);
+	initialize_game(&map, &mlx);
 	return (0);
 }

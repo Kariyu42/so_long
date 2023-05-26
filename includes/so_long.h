@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:17:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/24 14:34:52 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:59:24 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@
 // hook press key
 # define RED_CROSS 17
 # define ESC 53
-
-/* mlx window size */
-# define WIDTH 1920
-# define HEIGHT 1080
 
 // starting pont for flood_fill function : check_paths();
 typedef struct	s_start
@@ -39,43 +35,31 @@ typedef struct	s_tools
 	int	collects;
 }				t_tools;
 
-/* struct pour la map a parser qui contient :
-** - un tableau de char **map
-** - un int width qui contient la largeur de la map // nous servira pour la vérification de la map rectangulaire
-*/
-typedef struct	s_map
+typedef struct	s_sprite
 {
-	char	**map;
+	void	*wall;
+	void	*exit;
+	void	*coin;
+	void	*player;
+	void	*ground;
 	int		width;
 	int		height;
-	t_tools	tools;
+}				t_sprite;
+
+typedef struct	s_map
+{
+	char		**map;
+	int			width;
+	int			height;
+	t_sprite	v;
+	t_tools		tools;
 }				t_map;
 
-/* s_data pour la mlx qui contient :
-** - un void *img
-** - un char *addr
-** - un int bits_per_pixel
-** - un int line_length
-** - un int endian
-*/
-
-typedef struct	s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
-/* struct pour la mlx qui contient :
-** - un void *mlx
-** - un void *win
-*/
 typedef struct	s_mlx
 {
 	void	*mlx;
 	void	*win;
+	void	*img;
 }				t_mlx;
 
 /**** libraries ****/
@@ -101,7 +85,7 @@ int		check_walls(char *line, int index, t_map *map, int width);
 void	free_map(char **plan);
 
 // Initialize game with MinilibX
-void	initialize_game(t_map *map, t_mlx *mlx, t_data *img);
+void	initialize_game(t_map *map, t_mlx *mlx);
 
 // Tools for closing window
 int		close_win(t_mlx *mlx);
