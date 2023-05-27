@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:17:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/26 17:23:50 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:27:18 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,14 @@
 # define SO_LONG_H
 
 // General
-# define ERROR 1
+# define ERROR -1
 # define SUCCESS 0
+
+// Player move
+# define MOVE_UP 13
+# define MOVE_D 1
+# define MOVE_L 0
+# define MOVE_R 2
 
 // hook press key
 # define RED_CROSS 17

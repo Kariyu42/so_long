@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 12:01:03 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/26 18:07:31 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:30:22 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,27 @@ static void	put_images(t_map *map, t_mlx *mlx)
 
 static int	hook_func(int keycode, t_mlx *mlx)
 {
-	if (keycode == 2)
-		
+	/*if (keycode == 2)
+		move_right();
+	else if (keycode == 13)
+		move_up();
+	else if (keycode == 1)
+		move_down();
+	else if (keycode == 0)
+		move_left();*/
 	// A = 0;
 	// W = 13;
 	// S = 1;
 	// D = 2;
-	if (keycode == ESC)
+	if (keycode == MOVE_UP)
+		move_player(MOVE_UP);
+	else if (keycode == MOVE_D)
+		move_player(MOVE_D);
+	else if (keycode == MOVE_L)
+		move_player(MOVE_L);
+	else if (keycode == MOVE_R)
+		move_player(MOVE_R);
+	else if (keycode == ESC)
 	{
 		mlx_destroy_window(mlx->mlx, mlx->win);
 		exit(EXIT_SUCCESS);
