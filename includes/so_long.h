@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:17:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/27 15:27:18 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/29 12:13:36 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,26 @@
 # define RED_CROSS 17
 # define ESC 53
 
-// starting pont for flood_fill function : check_paths();
+// starting point for flood_fill function : check_paths();
 typedef struct	s_start
 {
 	int	x;
 	int	y;
 }				t_start;
 
+typedef struct s_game
+{
+	t_mlx	mlx;
+	t_start	player;
+	t_map	map;
+}				t_game;
+
 typedef struct	s_tools
 {
 	int	door;
 	int	player;
 	int	collects;
+	int	moves;
 }				t_tools;
 
 typedef struct	s_sprite
@@ -77,34 +85,35 @@ typedef struct	s_mlx
 # include "../libft/inc/libft.h"
 
 /** Initialize parameters **/
-void	init_params(t_map *map);
+void	init_params(t_game *game);
 
 // Map Parsing
 char	*trim_newline(char *line);
 int		get_map_height(char *filename);
-char	**map_dup(char **plan, t_map *map);
-int		search_char(char *line, t_map *map);
-void	collect_map(char *filename, t_map *map);
-int		check_walls(char *line, int index, t_map *map, int width);
+char	**map_dup(char **plan, t_game *game);
+int		search_char(char *line, t_game *game);
+void	collect_map(char *filename, t_game *game);
+int		check_walls(char *line, int index, t_game *game, int width);
 
 // Free map function
 void	free_map(char **plan);
 
 // Initialize game with MinilibX
-void	initialize_game(t_map *map, t_mlx *mlx);
+void	initialize_game(t_game *game);
 
 // Tools for closing window
-int		close_win(t_mlx *mlx);
-int		key_exit(int keycode, t_mlx *mlx);
+int		close_win(t_game *game);
 
 // Other tools
-t_start find_start(char player, char **map);
+t_start	find_start(char player, char **map);
+void	move_player(t_game *game, int dir);
+void	w_img(t_game *g, void *img, int x, int y);
 
 /** Print & error functions **/
 int		ft_error(int error);
 int		check_extension(char *str);
 
 /* remove this function before push */
-void	print_map(t_map *map);
+void	print_map(t_game *game);
 
 #endif

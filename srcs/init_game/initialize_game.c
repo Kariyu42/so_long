@@ -6,122 +6,89 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 12:01:03 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/27 15:30:22 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/29 12:13:29 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	init_mlx_win(t_mlx *mlx, t_map *map)
+static void	init_mlx_win(t_game *game)
 {
-	mlx->mlx = mlx_init();
-	if (mlx->mlx == NULL)
+	game->mlx.mlx = mlx_init();
+	if (game->mlx.mlx == NULL)
 		exit(EXIT_FAILURE);
-	mlx->win = mlx_new_window(mlx->mlx, map->width * 64, map->height * 64, \
-		"kquetat- SO_LONG");
-	if (mlx->win == NULL)
+	game->mlx.win = mlx_new_window(game->mlx.mlx, game->map.width * 64, \
+		game->map.height * 64, "kquetat- SO_LONG");
+	if (game->mlx.win == NULL)
 		exit(EXIT_FAILURE);
-	mlx->img = mlx_new_image(mlx->mlx, map->width * 64, map->width * 64);
-	if (mlx->img == NULL)
+	game->mlx.img = mlx_new_image(game->mlx.mlx, game->map.width * 64, \
+		game->map.width * 64);
+	if (game->mlx.img == NULL)
 		exit(EXIT_FAILURE);
 }
 
-static void	stash_filenames(t_map *map, t_mlx *mlx)
+static void	stash_filenames(t_game *game)
 {
-	map->v.width = 64;
-	map->v.height = 64;
-	map->v.wall = mlx_xpm_file_to_image(mlx->mlx, "./img/wall_tree.xpm", \
-		&map->v.width, &map->v.height);
-	map->v.exit = mlx_xpm_file_to_image(mlx->mlx, "./img/exit_front.xpm", \
-		&map->v.width, &map->v.height);
-	map->v.coin = mlx_xpm_file_to_image(mlx->mlx, "./img/collectible.xpm", \
-		&map->v.width, &map->v.height);
-	map->v.ground = mlx_xpm_file_to_image(mlx->mlx, "./img/basic_grass.xpm", \
-		&map->v.width, &map->v.height);
-	map->v.player = mlx_xpm_file_to_image(mlx->mlx, "./img/player_front.xpm", \
-		&map->v.width, &map->v.height);
+	game->map.v.width = 64;
+	game->map.v.height = 64;
+	game->map.v.wall = mlx_xpm_file_to_image(game->mlx.mlx, "./img/wall_tree.xpm", \
+		&game->map.v.width, &game->map.v.height);
+	game->map.v.exit = mlx_xpm_file_to_image(game->mlx.mlx, "./img/exit_front.xpm", \
+		&game->map.v.width, &game->map.v.height);
+	game->map.v.coin = mlx_xpm_file_to_image(game->mlx.mlx, "./img/collectible.xpm", \
+		&game->map.v.width, &game->map.v.height);
+	game->map.v.ground = mlx_xpm_file_to_image(game->mlx.mlx, "./img/basic_grass.xpm", \
+		&game->map.v.width, &game->map.v.height);
+	game->map.v.player = mlx_xpm_file_to_image(game->mlx.mlx, "./img/player_front.xpm", \
+		&game->map.v.width, &game->map.v.height);
 }
 
-static void	put_images(t_map *map, t_mlx *mlx)
+static void	put_images(t_game *g)
 {
 	int	i;
 	int	j;
 
 	i = -1;
 	j = -1;
-	while (map->map[++i])
+	while (g->map.map[++i])
 	{
 		j = -1;
-		while (map->map[i][++j])
+		while (g->map.map[i][++j])
 		{
-			mlx_put_image_to_window(mlx->mlx, mlx->win, map->v.ground, j * 64, i * 64);
-			if (map->map[i][j] == 'P')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, map->v.player, j * 64, i * 64);
-			else if (map->map[i][j] == '1')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, map->v.wall, j * 64, i * 64);
-			else if (map->map[i][j] == 'C')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, map->v.coin, j * 64, i * 64);
-			else if (map->map[i][j] == 'E')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, map->v.exit, j * 64, i * 64);
+			w_img(g, g->map.v.ground, j * 64, i * 64);
+			if (g->map.map[i][j] == 'P')
+				w_img(g, g->map.v.player, j * 64, i * 64);
+			else if (g->map.map[i][j] == '1')
+				w_img(g, g->map.v.wall, j * 64, i * 64);
+			else if (g->map.map[i][j] == 'C')
+				w_img(g, g->map.v.coin, j * 64, i * 64);
+			else if (g->map.map[i][j] == 'E')
+				w_img(g, g->map.v.exit, j * 64, i * 64);
 		}
 	}
 }
 
-/*void	render(t_map *map, t_mlx *mlx)
+static int	key_press(int keycode, t_game *game)
 {
-	int	i;
-	int	j;
-	t_start	player;
-
-	i = -1;
-	player = find_start('P', map->map);
-	while (map->map[++i])
-	{
-		j = -1;
-		while (map->map[i][++j] && )
-		{
-			
-		}
-	}
-}*/
-
-static int	hook_func(int keycode, t_mlx *mlx)
-{
-	/*if (keycode == 2)
-		move_right();
-	else if (keycode == 13)
-		move_up();
-	else if (keycode == 1)
-		move_down();
-	else if (keycode == 0)
-		move_left();*/
-	// A = 0;
-	// W = 13;
-	// S = 1;
-	// D = 2;
 	if (keycode == MOVE_UP)
-		move_player(MOVE_UP);
+		move_player(game, MOVE_UP);
 	else if (keycode == MOVE_D)
-		move_player(MOVE_D);
+		move_player(game, MOVE_D);
 	else if (keycode == MOVE_L)
-		move_player(MOVE_L);
+		move_player(game, MOVE_L);
 	else if (keycode == MOVE_R)
-		move_player(MOVE_R);
+		move_player(game, MOVE_R);
 	else if (keycode == ESC)
-	{
-		mlx_destroy_window(mlx->mlx, mlx->win);
-		exit(EXIT_SUCCESS);
-	}
+		quit_game(game);
 	return (0);
 }
 
-void	initialize_game(t_map *map, t_mlx *mlx)
+void	initialize_game(t_game *game)
 {
-	init_mlx_win(mlx, map);
-	stash_filenames(map, mlx);
-	put_images(map, mlx);
-//	render(map, mlx);
-	mlx_hook(mlx->win, RED_CROSS, 1L << 17, &close_win, mlx);
-	mlx_key_hook(mlx->win, &hook_func, mlx);
-	mlx_loop(mlx->mlx);
+	init_mlx_win(game);
+	stash_filenames(game);
+	put_images(game);
+	mlx_hook(game->mlx.win, RED_CROSS, 1L << 17, &close_win, game);
+	mlx_key_hook(game->mlx.win, &key_press, game);
+	mlx_loop(game->mlx.mlx);
 }

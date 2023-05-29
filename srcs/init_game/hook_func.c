@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_tools.c                                     :+:      :+:    :+:   */
+/*   hook_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 14:19:43 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/29 10:40:23 by kquetat-         ###   ########.fr       */
+/*   Created: 2023/05/29 08:07:50 by kquetat-          #+#    #+#             */
+/*   Updated: 2023/05/29 10:37:29 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	close_win(t_game *game)
+void	w_img(t_game *g, void *img, int x, int y)
 {
-	mlx_destroy_window(game->mlx.mlx, game->mlx.win);
+	mlx_put_image_to_window(g->mlx.mlx, g->mlx.win, img, x, y);
+}
+
+void	quit_game(t_mlx *mlx)
+{
+	mlx_destroy_window(mlx->mlx, mlx->win);
 	exit(EXIT_SUCCESS);
-	return (0);
 }
