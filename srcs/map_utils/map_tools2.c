@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:42:08 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/24 10:49:42 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/29 15:08:09 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,4 @@ void	free_map(char **plan)
 	i = -1;
 	while (plan[++i])
 		free(plan);
-	free(plan);
 }

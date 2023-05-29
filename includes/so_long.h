@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:17:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/29 12:13:36 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/29 18:51:45 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,6 @@ typedef struct	s_start
 	int	y;
 }				t_start;
 
-typedef struct s_game
-{
-	t_mlx	mlx;
-	t_start	player;
-	t_map	map;
-}				t_game;
 
 typedef struct	s_tools
 {
@@ -76,10 +70,18 @@ typedef struct	s_mlx
 	void	*img;
 }				t_mlx;
 
+typedef struct s_game
+{
+	int		can_exit;
+	t_start	e_pos;
+	t_mlx	mlx;
+	t_start	player;
+	t_map	map;
+}				t_game;
+
 /**** libraries ****/
 # include <stdio.h>
 # include <mlx.h>
-# include <math.h>
 # include <fcntl.h>
 # include <string.h>
 # include "../libft/inc/libft.h"
@@ -102,12 +104,14 @@ void	free_map(char **plan);
 void	initialize_game(t_game *game);
 
 // Tools for closing window
-int		close_win(t_game *game);
+int		close_win(void);
 
 // Other tools
 t_start	find_start(char player, char **map);
 void	move_player(t_game *game, int dir);
 void	w_img(t_game *g, void *img, int x, int y);
+void	quit_game(t_game *game);
+void	put_images(t_game *g);
 
 /** Print & error functions **/
 int		ft_error(int error);

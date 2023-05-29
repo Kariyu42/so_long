@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 12:01:03 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/29 12:13:29 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/29 18:10:47 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	stash_filenames(t_game *game)
 		&game->map.v.width, &game->map.v.height);
 }
 
-static void	put_images(t_game *g)
+void	put_images(t_game *g)
 {
 	int	i;
 	int	j;
@@ -79,7 +79,7 @@ static int	key_press(int keycode, t_game *game)
 	else if (keycode == MOVE_R)
 		move_player(game, MOVE_R);
 	else if (keycode == ESC)
-		quit_game(game);
+		exit(EXIT_SUCCESS);
 	return (0);
 }
 
@@ -88,6 +88,7 @@ void	initialize_game(t_game *game)
 	init_mlx_win(game);
 	stash_filenames(game);
 	put_images(game);
+	game->e_pos = find_start('E', game->map.map);
 	mlx_hook(game->mlx.win, RED_CROSS, 1L << 17, &close_win, game);
 	mlx_key_hook(game->mlx.win, &key_press, game);
 	mlx_loop(game->mlx.mlx);
