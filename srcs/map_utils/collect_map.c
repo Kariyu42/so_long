@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 22:26:28 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/30 19:11:02 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:32:00 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,19 @@ t_start	find_start(char player, char **map)
 
 static void	check_paths(char **plan, t_start pos, t_game *game, char *to_fill)
 {
-	static int	c = 0;
-	static int	e = 0;
-
 	if (pos.x <= 0 || pos.y <= 0 \
 		|| plan[pos.y][pos.x] == '1' || !ft_strchr(to_fill, plan[pos.y][pos.x]))
 		return ;
 	if (plan[pos.y][pos.x] == 'C')
-		c += 1;
+		game->flood_c += 1;
 	else if (plan[pos.y][pos.x] == 'E')
-		e += 1;
+		game->flood_e += 1;
 	plan[pos.y][pos.x] = 'X';
 	print_map(plan); // remove function before push !
 	check_paths(plan, (t_start){pos.x - 1, pos.y}, game, to_fill);
 	check_paths(plan, (t_start){pos.x + 1, pos.y}, game, to_fill);
 	check_paths(plan, (t_start){pos.x, pos.y - 1}, game, to_fill);
 	check_paths(plan, (t_start){pos.x, pos.y + 1}, game, to_fill);
-	if (c != game->map.tools.collects || c == 0)
-		ft_error(6);
-	if (e != game->map.tools.door || e == 0)
-		ft_error(7);
 }
 
 static int	parsing_check(t_game *game, int width)
@@ -64,7 +57,7 @@ static int	parsing_check(t_game *game, int width)
 	int	i;
 
 	i = 0;
-	//print_map(map); // remove function before push !
+	print_map(game->map.map); // remove function before push !
 	while (game->map.map[i])
 	{
 		if (check_walls(game->map.map[i], i, game, width) == ERROR)
@@ -79,8 +72,8 @@ static int	parsing_check(t_game *game, int width)
 		&& game->map.tools.player == 1)
 		{
 			check_paths(map_dup(game->map.map, game), \
-				find_start('P', game->map.map), game, "0CE");
-			//print_map(game); // remove function before push !
+				find_start('P', game->map.map), game, "P0CE");
+			print_map(game->map.map); // remove function before push !
 			return (SUCCESS);
 		}
 	ft_putstr_fd("An error was found: Please check the map format\n", 2);
@@ -115,7 +108,7 @@ void	collect_map(char *filename, t_game *game)
 {
 	init_params(game);
 	printf("IN COLLECT MAP\n"); // remove printf before push !
-	game->map.height = get_map_height(filename);
+	game->map.height = get_map_height(filename); // added - 1;
 	printf("map->height : %d\n", game->map.height); // remove printf before push !
 	if (parse_map(game, filename) == ERROR)
 		exit(EXIT_FAILURE);
@@ -124,4 +117,8 @@ void	collect_map(char *filename, t_game *game)
 	printf("map->width : %d\n", game->map.width);
 	if (parsing_check(game, game->map.width) == ERROR)
 		exit(EXIT_FAILURE);
+	if (game->flood_c != game->map.tools.collects)
+		ft_error(6);
+	if (game->flood_e != game->map.tools.door)
+		ft_error(7);
 }

@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:35:34 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/29 09:37:10 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:16:52 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int	check_walls(char *line, int index, t_game *game, int width)
 
 	i = 0;
 	//puts("check_walls"); // remove puts before push !
-	//printf("%s\nindex: %d\n", line, index); // remove printf before push !
-	if (index == 0 || index == game->map.height)
+	printf("%s\nindex: %d\ngame->map.height: %d\n", line, index, game->map.height); // remove printf before push !
+	if (index == 0 || index == game->map.height - 1)
 	{
 		while (line[i])
 		{

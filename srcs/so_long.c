@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:16:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/30 19:01:56 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:28:18 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	print_map(char **map)
 
 void	init_params(t_game *game)
 {
+	game->flood_c = 0;
+	game->flood_e = 0;
 	game->map.width = 0;
 	game->map.height = 0;
 	game->map.tools.door = 0;

@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:17:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/30 19:00:51 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:27:51 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct	s_mlx
 
 typedef struct	s_game
 {
+	int		flood_c;
+	int		flood_e;
 	int		moves;
 	int		valid_path;
 	t_mlx	mlx;
