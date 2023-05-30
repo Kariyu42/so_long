@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:17:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/30 18:08:06 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/30 19:00:51 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,6 @@ int		ft_error(int error);
 int		check_extension(char *str);
 
 /* remove this function before push */
-void	print_map(t_game *game);
+void	print_map(char **map);
 
 #endif

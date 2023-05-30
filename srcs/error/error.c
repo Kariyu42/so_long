@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:46:46 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/23 15:39:49 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/30 19:17:10 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	check_extension(char *str)
 
 int	ft_error(int error)
 {
+	ft_printf("Error\n");
 	if (error == 2)
 		ft_putstr_fd("Wrong number of arguments!\n", 2);
 	else if (error == 3)

@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:16:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/29 09:40:22 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/30 19:01:56 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,19 @@ les E (sortie)
 
 #include "so_long.h"
 
-void	print_map(t_game *game)
+void	print_map(char **map)
 {
 	int	i;
 
 	i = 0;
-	while (game->map.map[i])
+	while (map[i])
 	{
-		ft_putstr_fd(game->map.map[i], 1);
+		ft_putstr_fd(map[i], 1);
 		ft_putchar_fd('\n', 1);
 		i++;
 	}
+	printf("DONE\n");
+	ft_putchar_fd('\n', 1);
 }
 
 void	init_params(t_game *game)
