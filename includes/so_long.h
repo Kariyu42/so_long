@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:17:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/29 18:51:45 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/30 17:09:41 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,9 @@ typedef struct	s_mlx
 	void	*img;
 }				t_mlx;
 
-typedef struct s_game
+typedef struct	s_game
 {
-	int		can_exit;
-	t_start	e_pos;
+	int	valid_path;
 	t_mlx	mlx;
 	t_start	player;
 	t_map	map;
