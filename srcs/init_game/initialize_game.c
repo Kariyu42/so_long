@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 12:01:03 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/30 16:43:16 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/30 18:12:15 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	initialize_game(t_game *game)
 	init_mlx_win(game);
 	stash_filenames(game);
 	put_images(game);
+	game->moves = 0;
 	mlx_hook(game->mlx.win, RED_CROSS, 1L << 17, &close_win, game);
 	mlx_key_hook(game->mlx.win, &key_press, game);
 	mlx_loop(game->mlx.mlx);

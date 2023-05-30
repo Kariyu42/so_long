@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:28:17 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/30 17:56:50 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/30 18:13:12 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,21 @@ static void	check_move(t_game *game, char **map, int x, int y)
 	w_img(game, game->map.v.player, x * 64, y * 64);
 }
 
+static void	move_player2(t_game *game, t_start player, int var)
+{
+	if (var && game->valid_path != 0)
+	{
+		game->map.map[player.y][player.x] = 'E';
+		w_img(game, game->map.v.ground, player.x * 64, player.y * 64);
+		w_img(game, game->map.v.exit, player.x * 64, player.y * 64);
+		var = 0;
+	}
+	else if (game->valid_path != 0 && !var)
+	{
+		game->map.map[player.y][player.x] = '0';
+		w_img(game, game->map.v.ground, player.x * 64, player.y * 64);
+	}
+}
 
 void	move_player(t_game *game, int dir)
 {
@@ -90,16 +105,10 @@ void	move_player(t_game *game, int dir)
 		check_move(game, game->map.map, player.x, player.y - 1);
 	else if (dir == MOVE_D)
 		check_move(game, game->map.map, player.x, player.y + 1);
-	if (var && game->valid_path != 0)
+	move_player2(game, player, var);
+	if (game->valid_path)
 	{
-		game->map.map[player.y][player.x] = 'E';
-		w_img(game, game->map.v.ground, player.x * 64, player.y * 64);
-		w_img(game, game->map.v.exit, player.x * 64, player.y * 64);
-		var = 0;
-	}
-	else if (game->valid_path != 0 && !var)
-	{
-		game->map.map[player.y][player.x] = '0';
-		w_img(game, game->map.v.ground, player.x * 64, player.y * 64);
+		game->moves++;
+		ft_printf("moves count: %d\n", game->moves);
 	}
 }
