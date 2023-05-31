@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:19:43 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/29 15:29:59 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:26:14 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	quit_game(t_game *game)
 
 int	close_win(void)
 {
-	//mlx_destroy_window(game->mlx.mlx, game->mlx.win);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

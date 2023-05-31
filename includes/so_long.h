@@ -6,12 +6,19 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:17:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/30 20:27:51 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:15:59 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+/**** libraries ****/
+# include <stdio.h>
+# include <mlx.h>
+# include <fcntl.h>
+# include <string.h>
+# include "../libft/inc/libft.h"
 
 // General
 # define ERROR -1
@@ -28,14 +35,13 @@
 # define ESC 53
 
 // starting point for flood_fill function : check_paths();
-typedef struct	s_start
+typedef struct s_start
 {
 	int	x;
 	int	y;
 }				t_start;
 
-
-typedef struct	s_tools
+typedef struct s_tools
 {
 	int	door;
 	int	player;
@@ -43,7 +49,7 @@ typedef struct	s_tools
 	int	moves;
 }				t_tools;
 
-typedef struct	s_sprite
+typedef struct s_sprite
 {
 	void	*wall;
 	void	*exit;
@@ -54,7 +60,7 @@ typedef struct	s_sprite
 	int		height;
 }				t_sprite;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	char		**map;
 	int			width;
@@ -63,14 +69,14 @@ typedef struct	s_map
 	t_tools		tools;
 }				t_map;
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
 	void	*img;
 }				t_mlx;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	int		flood_c;
 	int		flood_e;
@@ -80,13 +86,6 @@ typedef struct	s_game
 	t_start	player;
 	t_map	map;
 }				t_game;
-
-/**** libraries ****/
-# include <stdio.h>
-# include <mlx.h>
-# include <fcntl.h>
-# include <string.h>
-# include "../libft/inc/libft.h"
 
 /** Initialize parameters **/
 void	init_params(t_game *game);
@@ -118,8 +117,5 @@ void	put_images(t_game *g);
 /** Print & error functions **/
 int		ft_error(int error);
 int		check_extension(char *str);
-
-/* remove this function before push */
-void	print_map(char **map);
 
 #endif

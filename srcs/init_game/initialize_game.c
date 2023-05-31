@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 12:01:03 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/30 18:12:15 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:25:29 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ static void	stash_filenames(t_game *game)
 {
 	game->map.v.width = 64;
 	game->map.v.height = 64;
-	game->map.v.wall = mlx_xpm_file_to_image(game->mlx.mlx, "./img/wall_tree.xpm", \
-		&game->map.v.width, &game->map.v.height);
-	game->map.v.exit = mlx_xpm_file_to_image(game->mlx.mlx, "./img/exit_front.xpm", \
-		&game->map.v.width, &game->map.v.height);
-	game->map.v.coin = mlx_xpm_file_to_image(game->mlx.mlx, "./img/collectible.xpm", \
-		&game->map.v.width, &game->map.v.height);
-	game->map.v.ground = mlx_xpm_file_to_image(game->mlx.mlx, "./img/basic_grass.xpm", \
-		&game->map.v.width, &game->map.v.height);
-	game->map.v.player = mlx_xpm_file_to_image(game->mlx.mlx, "./img/player_front.xpm", \
-		&game->map.v.width, &game->map.v.height);
+	game->map.v.wall = mlx_xpm_file_to_image(game->mlx.mlx, \
+		"./img/wall_tree.xpm", &game->map.v.width, &game->map.v.height);
+	game->map.v.exit = mlx_xpm_file_to_image(game->mlx.mlx, \
+		"./img/exit_front.xpm", &game->map.v.width, &game->map.v.height);
+	game->map.v.coin = mlx_xpm_file_to_image(game->mlx.mlx, \
+		"./img/collectible.xpm", &game->map.v.width, &game->map.v.height);
+	game->map.v.ground = mlx_xpm_file_to_image(game->mlx.mlx, \
+		"./img/basic_grass.xpm", &game->map.v.width, &game->map.v.height);
+	game->map.v.player = mlx_xpm_file_to_image(game->mlx.mlx, \
+		"./img/player_front.xpm", &game->map.v.width, &game->map.v.height);
 }
 
 void	put_images(t_game *g)

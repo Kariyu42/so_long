@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:35:34 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/30 20:16:52 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/31 09:56:09 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	search_char(char *line, t_game *game)
 	int	i;
 
 	i = -1;
-	//puts("search_char"); // remove puts(); before push
 	while (line[++i] && i < game->map.width)
 	{
 		if (ft_strchr("10PCE", line[i]) == 0)
@@ -50,24 +49,19 @@ int	check_walls(char *line, int index, t_game *game, int width)
 	int	i;
 
 	i = 0;
-	//puts("check_walls"); // remove puts before push !
-	printf("%s\nindex: %d\ngame->map.height: %d\n", line, index, game->map.height); // remove printf before push !
 	if (index == 0 || index == game->map.height - 1)
 	{
 		while (line[i])
 		{
 			if (line[i] != '1')
-			{
-				//printf("line[%d]: %c\n", i, line[i]);
-				return (puts("start or end of map"), ERROR); // remove puts before push !
-			}
+				return (ERROR);
 			i++;
 		}
 	}
 	else
 	{
 		if (line[0] != '1' || line[width - 1] != '1')
-			return (puts("middle part of map"), ERROR);
+			return (ERROR);
 	}
 	return (SUCCESS);
 }
