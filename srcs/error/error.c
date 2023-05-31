@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:46:46 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/31 10:26:10 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/31 11:32:38 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ int	check_extension(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] && str[i] != '.')
+	while (str[i])
 		i++;
+	i--;
+	while (str[i] && str[i] != '.')
+		i--;
 	i++;
 	if (str[i] == 'b' && str[i + 1] == 'e' && str[i + 2] == 'r'
 		&& str[i + 3] == '\0')

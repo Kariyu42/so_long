@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:17:02 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/31 10:15:59 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/31 11:24:04 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SO_LONG_H
 
 /**** libraries ****/
-# include <stdio.h>
 # include <mlx.h>
 # include <fcntl.h>
 # include <string.h>

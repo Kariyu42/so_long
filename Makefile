@@ -6,7 +6,7 @@
 #    By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 21:08:42 by kquetat-          #+#    #+#              #
-#    Updated: 2023/05/29 10:04:36 by kquetat-         ###   ########.fr        #
+#    Updated: 2023/05/31 11:20:55 by kquetat-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ CHAMPAGNE	=	\033[38;5;224m
 
 ### Debug ###
 ifdef DEBUG
-CFLAGS	+=	-fsanitize=address -g3
+CFLAGS	+=	-fsanitize=undefined -g3
 endif
 
 ### Loading Bar ###
