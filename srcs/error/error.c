@@ -6,25 +6,27 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 21:46:46 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/31 11:32:38 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/31 14:18:46 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
 int	check_extension(char *str)
 {
-	int	i;
+	int			i;
+	const char	*ext;
+	int			len_ext;
+	int			len_filename;
 
-	i = 0;
-	while (str[i])
-		i++;
-	i--;
-	while (str[i] && str[i] != '.')
-		i--;
-	i++;
-	if (str[i] == 'b' && str[i + 1] == 'e' && str[i + 2] == 'r'
-		&& str[i + 3] == '\0')
+	ext = ".ber";
+	len_ext = (int)ft_strlen(ext);
+	len_filename = (int)ft_strlen(str);
+	if (len_filename <= len_ext)
+		return (ERROR);
+	i = len_filename - len_ext;
+	if (!ft_strncmp(str + i, ext, ft_strlen(str + i)))
 		return (SUCCESS);
 	return (ERROR);
 }

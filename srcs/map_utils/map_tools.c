@@ -6,13 +6,12 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:35:34 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/31 09:56:09 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/31 14:21:05 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// function that creates a copy of the map
 char	**map_dup(char **plan, t_game *game)
 {
 	int		i;
@@ -33,7 +32,7 @@ int	search_char(char *line, t_game *game)
 	while (line[++i] && i < game->map.width)
 	{
 		if (ft_strchr("10PCE", line[i]) == 0)
-			return (ft_putstr_fd("found abnormal char in map\n", 2), ERROR);
+			return (ERROR);
 		if (line[i] == 'E')
 			game->map.tools.door += 1;
 		else if (line[i] == 'P')
@@ -86,7 +85,10 @@ int	get_map_height(char *filename)
 	len = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
+	{
 		return (ft_error(5));
+		exit(EXIT_FAILURE);
+	}
 	while (1)
 	{
 		line = get_next_line(fd);

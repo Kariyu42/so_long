@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 12:01:03 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/31 10:25:29 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/31 12:12:03 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ static void	stash_filenames(t_game *game)
 		"./img/basic_grass.xpm", &game->map.v.width, &game->map.v.height);
 	game->map.v.player = mlx_xpm_file_to_image(game->mlx.mlx, \
 		"./img/player_front.xpm", &game->map.v.width, &game->map.v.height);
+	if (!game->map.v.wall || !game->map.v.exit || !game->map.v.coin || \
+		!game->map.v.ground || !game->map.v.player)
+		exit(EXIT_FAILURE);
 }
 
 void	put_images(t_game *g)
